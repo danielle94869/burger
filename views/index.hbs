@@ -1,0 +1,52 @@
+<div class="jumbotron">
+  <h1 class="display-4">Burger App</h1>
+  <p class="lead">This is a application to keep track of burger meal, and check if it is devoured or not.</p>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form>
+        <div class="form-group">
+          <label for="meal">Meal:</label>
+          <input type="text" class="form-control" id="meal">
+        </div>
+        <button type="submit" id="addMeal" class="btn btn-primary">Add Meal</button>
+      </form>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-6">
+      <ul id="notDevoured" class="list-group">
+        <h2>Not Devoured</h2>
+        {{#each burgers}}
+        {{#unless this.devoured}}
+        <li id="{{ this.id }}" class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ this.burger_name }}</h5>
+            <button
+              data-name="{{ this.burger_name }}"
+              class="purchase btn btn-success">✓</button>
+          </div>
+        </li>
+        {{/unless}}
+        {{/each}}
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <ul id="devoured" class="list-group">
+        <h2>Devoured</h2>
+        {{#each burgers}}
+        {{#if this.devoured}}
+        <li id="{{ this.id }}" class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ this.burger_name }}</h5>
+            <button class="btn btn-danger remove">X</button>
+          </div>
+        </li>
+        {{/if}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
